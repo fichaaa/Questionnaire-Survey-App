@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuestionnaireController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +23,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/questionnaires/create', [QuestionnaireController::class, 'create']);
+Route::post('/questionnaires' , [QuestionnaireController::class, 'store']);
+
+Route::get('questionnaires/{questionnaire}', [QuestionnaireController::class, 'show']);
+
+Route::get('/questionnaires/{questionnaire}/questions/create', [QuestionController::class, 'create']);
+
+Route::post('/questionnaires/{questionnaire}/questions', [QuestionController::class, 'store']);
